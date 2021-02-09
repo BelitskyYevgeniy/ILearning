@@ -15,14 +15,11 @@ namespace Task_3_CS
         }
         static byte[] computeHMAC(int bound, out byte[] key, out int step)
         {
-
             key = new byte[16];
             RandomNumberGenerator.Fill(key);
             step = RandomNumberGenerator.GetInt32(1, bound);
             HMACSHA256 hmac = new HMACSHA256(key);
             return hmac.ComputeHash(BitConverter.GetBytes(step));
-
-
         }
         static void printMenu(string[] str)
         {
