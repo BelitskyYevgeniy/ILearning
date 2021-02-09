@@ -7,10 +7,10 @@ namespace Task_3_CS
     class Program
     {
         const int ExitCode = 0;
-        static bool IsWin(int stepC, int stepH, int length)
+        static bool IsWin(int compStep, int humanStep, int length)
         {
             int half = length / 2;
-            int delta = stepH - stepC;
+            int delta = humanStep - compStep;
             return delta <= half && delta > 0 || length + delta <= half;
         }
         static byte[] computeHMAC(int bound, out byte[] key, out int step)
