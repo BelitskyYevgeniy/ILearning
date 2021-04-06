@@ -1,0 +1,1 @@
+let p=process.argv;let L=p.length;var M=new Map();var c=1;let r=L>2?[2]:[];for(var I=2;I<L;I++){var s=p[I].split('').sort().join('');var m=M.has(s)?M.get(s):[];var f=m.push(I);M.set(s,m);if(f>c){c=f;r=m;}}for(var i of r){console.log(p[i]);}

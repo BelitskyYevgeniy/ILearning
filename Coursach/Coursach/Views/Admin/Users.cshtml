@@ -1,0 +1,115 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer _localizer
+@inject UserManager<User> _userManager
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+@section ToolKit {
+
+    <button type="button" id="changerole" class="btn btn-dark toolbar" onclick="DoAfterSelection('ChangeRole')">
+        Change role
+    </button>
+    <button type="button" id="block" class="btn btn-dark toolbar" onclick="DoAfterSelection('BlockUser')">
+        Block/UnBlock
+    </button>
+    <button type="button" id="delete" class=" btn btn-danger toolbar" onclick="DoAfterSelection('DeleteUser')">
+        Delete
+    </button>
+}
+
+
+@section CenterContent{
+    <table class="table table-striped pb-2">
+        <tr>
+            <th scope="col">
+                <input type="checkbox" class="check-all d-inline-block" value="Select all" onclick="CheckAll()" />
+                <label font-size="40px">Select all</label>
+            </th>
+            <th scope="col">Id</th>
+            <th scope="col">@_localizer["Name"]</th>
+            <th scope="col">@_localizer["Email"]</th>
+            <th scope="col">@_localizer["Posts Link"]</th>
+            <th scope="col">@_localizer["Activity"]</th>
+            <th scope="col">@_localizer["Role"]</th>
+        </tr>
+        @foreach (var user in _userManager.Users)
+        {
+            <tr>
+
+
+
+                <td><input type="checkbox" class="users" name="@user.Id" /></td>
+                <td>@user.Id</td>
+                <td><a href="/Home/Page?id=@user.Id">@user.NickName</a></td>
+                <td>@user.Email</td>
+                <td><a href="/Admin/Posts?id=@user.Id">Posts</a></td>
+                <td>
+                    @{ if (_userManager.GetLockoutEndDateAsync(user).Result > DateTime.Now)
+                        {
+                            <label>@_localizer["Blocked"]</label>
+                        }
+                        else
+                        {
+                            <label>@_localizer["Active"]</label>
+                        }
+                    }
+                </td>
+                <td>
+                    @{
+                        if (_userManager.IsInRoleAsync(user, "admin").Result)
+                        {
+
+                            <label>@_localizer["admin"]</label>
+                        }
+                        else
+                        {
+                            <label>@_localizer["user"]</label>
+                        }
+                    }
+                </td>
+
+            </tr>
+        }
+    </table>
+
+}
+
+@section ChildScripts{
+    <script>
+
+
+
+        function CheckAll(e) {
+            var mybool = event.target.checked;
+            $('body input:checkbox.users').prop('checked', mybool);
+        }
+        function Send(j) {
+            var req = new XMLHttpRequest();
+
+            req.open('POST', j);
+            req.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    console.log(req.response);
+                    window.location = (req.response).redirectToUrl;
+                }
+            };
+            req.responseType = 'json';
+            req.send();
+        }
+        function DoAfterSelection(action) {
+            let url = new URL(window.location.origin + '/Admin/' + action);
+            let users = $('input[type=checkbox]:checked.users');
+            for (let i of users) {
+                url.searchParams.append('user', i.name);
+            }
+            console.log(url);
+            var j = url.toJSON();
+            Send(j);
+        }
+    </script>
+}

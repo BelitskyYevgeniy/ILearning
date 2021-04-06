@@ -1,0 +1,21 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@section Center{
+
+    <div class="btn-toolbar d-block " role="toolbar">
+        <div class="btn-group mr-2" role="group" aria-label="First group">
+            @RenderSection("Toolkit", false)
+        </div>
+    </div>
+    @RenderSection("CenterContent", false)
+
+}
+@section Scripts
+{
+    @RenderSection("ChildScripts", false)
+}
+

@@ -1,0 +1,25 @@
+﻿body {
+    background-color: midnightblue;
+    color: white;
+}
+footer {
+    background-color: black;
+    color: white;
+}
+header {
+    background-color: black;
+}
+
+.nav_link:hover {
+    color:greenyellow;
+    text-decoration: none;
+}
+
+
+th{
+    color:greenyellow;
+}
+td{
+    color:white;
+}
+

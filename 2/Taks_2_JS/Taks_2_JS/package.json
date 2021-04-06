@@ -1,0 +1,13 @@
+{
+  "name": "taks_2_js",
+  "version": "0.0.0",
+  "description": "Taks_2_JS",
+  "main": "app.js",
+  "author": {
+    "name": ""
+  },
+  "dependencies": {
+    "crypto-js": "^4.0.0",
+    "sha3": "^2.1.4"
+  }
+}

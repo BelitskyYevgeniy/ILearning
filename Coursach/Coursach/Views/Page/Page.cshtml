@@ -1,0 +1,76 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using Markdig
+@using System.Dynamic
+@using Microsoft.EntityFrameworkCore.Metadata.Internal
+
+
+
+@inject IViewLocalizer _localizer
+
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+@section Head
+{  
+
+}
+
+
+@section HeaderButtons
+{
+
+}
+
+@section Center
+{
+
+
+    <button id="collapseButtonEditor" class="btn btn-success" type="button" data-toggle="collapse" data-target="#collapseEditor" aria-expanded="false" aria-controls="collapseExample" onclick="changeButtonText('collapseButtonEditor',  '@_localizer["Create"]','@_localizer["Cancel"]')">@_localizer["Create"]</button>
+    <div class="collapse border" id="collapseEditor">
+
+    <form asp-action="AddPost" asp-route-id="@ViewBag.User.Id" asp-controller="Page" asp-route-returnUrl="@Context.Request.Path" method="post">
+            <input placeholder="Title" type="text" name="title"/>
+            <div class="file-upload-wrapper">
+                <input type="file" id="input-file-now" class="file-upload" />
+            </div>
+            <textarea placeholder="Your text" class="form-control" type="text" name="body"></textarea>
+            <input type="submit" class="btn btn-success"/>
+        </form>
+        
+    </div>
+    <div>
+        @{
+            if (ViewBag.Posts == null)
+            {
+                <h1>You do not have posts!</h1>
+            }
+            else
+            {
+                foreach (var post in ViewBag.Posts)
+                {
+                    <label>@post.Title</label>
+                    <div>
+                        @Markdown.ToHtml(post.Body);
+                    </div>
+                }
+            }
+        }
+    </div>
+}
+
+
+
+@section Scripts
+{
+    <script>
+    function changeButtonText(id, text1, text2) {
+        console.log(id);
+        let element=document.getElementById(id);
+        element.textContent = element.textContent ==text1?text2:text1;
+    }
+    </script>
+}
+

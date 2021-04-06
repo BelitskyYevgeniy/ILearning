@@ -1,0 +1,1 @@
+p=process.argv;L=p.length;M=new Map();c=1;r=L>2?[2]:[];for(I=2;I<L;I++){s=p[I].split('').sort().join('');if(M.has(s)){m=M.get(s);m.push(I);M.set(s,m);z=m.length;if(c<z){c=z;r=m;}}else M.set(s,[I]);}for(i of r)console.log(p[i]);

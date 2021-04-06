@@ -1,0 +1,103 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    ViewBag.Title = "Main page";
+}
+
+
+@section Navbar {
+
+    <button type="button" id="block" class="btn btn-dark toolbar" onclick="DoAfterSelection('Block')">
+        Block
+    </button>
+    <button type="button" id="block" class="btn btn-dark toolbar" onclick="DoAfterSelection('Unblock')">
+        Unblock
+    </button>
+    <button type="button" id="delete" class=" btn btn-danger toolbar" onclick="DoAfterSelection('Delete')">
+        Delete
+    </button>
+
+
+
+
+
+}
+@section Navbar_Main {
+    <a href="~/Account/Logout" class="btn btn-primary  d-inline-block">Logout</a>
+    <text>@User.Identity.Name</text>
+}
+
+@section Center{
+
+    <table class="table table-striped pb-2" id="table-to-refresh">
+        <tr>
+            <th scope="col">
+                <input type="checkbox" class="check-all d-inline-block" value="Select all" onclick="checkAll()" />
+                <label font-size="40px">Select all</label>
+            </th>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Date of registration</th>
+            <th scope="col">Last vist</th>
+            <th scope="col">Status</th>
+        </tr>
+        @foreach (var user in @ViewBag.Users)
+        {
+            <tr>
+
+
+
+                <td><input type="checkbox" class="users" name="@user.UserName" /></td>
+                <td>@user.Id</td>
+                <td>@user.NickName</td>
+                <td>@user.UserName</td>
+                <td>@user.Registration</td>
+                <td>@user.LastVisit</td>
+                <td>@(@user.IsActive?"Active":"Blocked")</td>
+
+            </tr>
+        }
+    </table>
+}
+
+@section Scripts{
+    <script>
+
+        $(document).ready(function () {
+            $(document).on('click', '.refresher', function () {
+
+            });
+        });
+
+
+        function checkAll(e) {
+            var mybool = event.target.checked;
+            $('body input:checkbox.users').prop('checked', mybool);
+        }
+        function send(j) {
+            var req = new XMLHttpRequest();
+ 
+            req.open('POST', j);
+            req.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+
+                    window.location = (req.response).redirectToUrl;
+                }
+            };
+            req.responseType = 'json';
+            req.send();
+        }
+        function DoAfterSelection(action) {
+            let url = new URL(window.location.origin + '/Home/' + action);
+            let users = $('input[type=checkbox]:checked.users');
+            for (let i of users) {
+                url.searchParams.append('user', i.name);
+            }
+            var j = url.toJSON();
+            send(j);
+        }
+    </script>
+}

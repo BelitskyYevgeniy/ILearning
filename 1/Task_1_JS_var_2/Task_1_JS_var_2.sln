@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30413.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "Task_1_JS_var_2", "Task_1_JS_var_2\Task_1_JS_var_2.njsproj", "{9213A930-5B35-412A-A3CA-8CDCCD9443A2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9213A930-5B35-412A-A3CA-8CDCCD9443A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9213A930-5B35-412A-A3CA-8CDCCD9443A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9213A930-5B35-412A-A3CA-8CDCCD9443A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9213A930-5B35-412A-A3CA-8CDCCD9443A2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {658FE0E3-E2E1-4214-AF80-2DF2690AC036}
+	EndGlobalSection
+EndGlobal

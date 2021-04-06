@@ -1,0 +1,32 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+}
+@section Toolkit{
+    <button type="button" id="delete" class=" btn btn-danger toolbar" onclick="DoAfterSelection('Delete')">
+        Delete
+    </button>
+}
+
+@section CenterContent{
+    <table class="table table-striped pb-2" id="table-to-refresh">
+        <tr>
+            <th scope="col">
+                <input type="checkbox" class="check-all d-inline-block" value="Select all" onclick="CheckAll()" />
+                <label font-size="40px">Select all</label>
+            </th>
+            <th scope="col">Id</th>
+            <th scope="col">User</th>
+            <th scope="col">Title</th>
+        </tr>
+        @foreach (var post in @ViewBag.Posts)
+        {
+            <tr>
+                <td><input type="checkbox" class="users" name="@post.Id" /></td>
+                <td>@post.Id</td>
+                <td><a href="/Home/Page?id=@post.User.Id">@post.User.UserName</a></td>
+                <td><a href="/Admin/Posts?id=@post.Title">Posts</a>)</td>
+            </tr>
+        }
+    </table>
+}

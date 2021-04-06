@@ -1,0 +1,30 @@
+﻿body {
+    background-color: white;
+    color: black;
+}
+
+footer {
+    background-color: lightgrey;
+    color: black;
+}
+
+header {
+    background-color: lightgrey;
+}
+
+
+.nav_link
+{
+    color: blue;
+}
+
+.nav_link:hover {
+    color: #856404;
+    text-decoration: none;
+}
+th{
+    color:#856404;
+}
+td {
+    color: black;
+}
