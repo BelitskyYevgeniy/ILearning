@@ -1,6 +1,6 @@
-#ILearning course
+# ILearning course
 
-##There are placed solutins for 4 tasks and course project.
+## There are placed solutins for 4 tasks and course project.
 
 1. Create and shorten javascript file
 2. Read file using python/ruby/node.js
@@ -9,7 +9,7 @@
 5. -
 6. -
 
-##Cource project:
+## Cource project:
   Develop social network "Morder" for fanfics. Necessary things in a project to do in short:
     - admin panel +
     - differentiate users and administrators rights +
